@@ -11,7 +11,7 @@ const Admin = () => {
       if (input === password) {
         setIsLocked(false);
       } else {
-        console.log("Wrong password.");
+        console.log("Error.");
       }
     } else {
       setIsLocked(true);
