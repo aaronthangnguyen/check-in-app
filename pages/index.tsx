@@ -1,7 +1,7 @@
-import { Flex, Heading, Center } from "@chakra-ui/react";
+import { Center, Flex, Heading } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import Head from "next/head";
-import Form from "../components/form/Form";
+import TicketForm from "../components/ticket/TicketForm";
 
 const Home: NextPage = () => {
   return (
@@ -20,7 +20,8 @@ const Home: NextPage = () => {
         </Heading>
       </Center>
 
-      <Form />
+      {/* <Form /> */}
+      <TicketForm />
     </Flex>
   );
 };
