@@ -21,7 +21,6 @@ const TicketForm = () => {
     const ticket: Ticket = {
       studentId: values.studentId,
       courseId: values.courseId,
-      time: new Date(),
     };
     tickets.push(ticket);
     console.log(tickets);
