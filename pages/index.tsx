@@ -3,7 +3,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import TicketForm from "../components/ticket/TicketForm";
 
-const Home: NextPage = () => {
+const IndexPage: NextPage = () => {
   return (
     <Flex direction="column">
       <Head>
@@ -26,4 +26,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default IndexPage;
