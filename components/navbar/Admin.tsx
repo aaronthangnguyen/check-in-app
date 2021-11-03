@@ -2,25 +2,25 @@ import { Button } from "@chakra-ui/button";
 import React, { useState } from "react";
 
 const Admin = () => {
-  const [isLocked, setIsLocked] = useState(true);
+  const [isAuthorized, setIsAuthorized] = useState(false);
   const password = process.env.NEXT_PUBLIC_ADMIN_PASSWORD;
 
-  const handleClick = () => {
-    if (isLocked) {
+  const handleAuthorization = () => {
+    if (!isAuthorized) {
       const input = prompt("Please enter password:");
       if (input === password) {
-        setIsLocked(false);
+        setIsAuthorized(true);
       } else {
         console.log("Error.");
       }
     } else {
-      setIsLocked(true);
+      setIsAuthorized(false);
     }
   };
   return (
     <>
       {/* Admin Panel */}
-      {!isLocked && (
+      {isAuthorized && (
         <>
           <Button>Export JSON</Button>
           <Button>Export Excel</Button>
@@ -29,8 +29,11 @@ const Admin = () => {
       )}
 
       {/* Lock / Unlock */}
-      <Button colorScheme={isLocked ? "gray" : "teal"} onClick={handleClick}>
-        {isLocked ? "Unlock" : "Lock"}
+      <Button
+        colorScheme={isAuthorized ? "teal" : "gray"}
+        onClick={handleAuthorization}
+      >
+        {isAuthorized ? "Unlock" : "Lock"}
       </Button>
     </>
   );
