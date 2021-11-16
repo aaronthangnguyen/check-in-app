@@ -1,0 +1,39 @@
+{
+  "tickets": [
+    {
+      "id": "d5d12093-56eb-4f44-a430-85cc293aaec7",
+      "studentId": "V111111111",
+      "courseId": "e2a5cff4-e901-44a1-8e98-1317f4031ca8",
+      "createdAt": "2021-11-15T14:41:28.298Z"
+    },
+    {
+      "id": "36de9a3d-e51c-4782-ae7b-d5c53fe6feab",
+      "studentId": "V2222222222",
+      "courseId": "97079e0c-4e01-4624-8de4-612399e48b89",
+      "createdAt": "2021-11-17T14:41:28.298Z"
+    },
+    {
+      "id": "5ef2685d-f4a3-4543-9576-ab78892c5e7c",
+      "studentId": "V333333333",
+      "courseId": "a7c005f2-9c22-48bd-a40b-988ff02f4a2f",
+      "createdAt": "2021-11-19T14:41:28.298Z"
+    }
+  ],
+  "courses": [
+    {
+      "id": "e2a5cff4-e901-44a1-8e98-1317f4031ca8",
+      "number": "COP 1000C",
+      "name": "Introduction to Programming Concepts"
+    },
+    {
+      "id": "97079e0c-4e01-4624-8de4-612399e48b89",
+      "number": "COP 2800C",
+      "name": "Java Programming I"
+    },
+    {
+      "id": "a7c005f2-9c22-48bd-a40b-988ff02f4a2f",
+      "number": "MAC 1140",
+      "name": "Precalculus Algebra"
+    }
+  ]
+}
