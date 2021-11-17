@@ -1,0 +1,88 @@
+{
+  "tickets": [
+    {
+      "id": "PihlqHA",
+      "studentId": "V000000000",
+      "course": "MAC 1105 | College Algebra",
+      "createdAt": "2021-11-16T16:25:48.028Z"
+    },
+    {
+      "id": "FialqHY",
+      "studentId": "V111111111",
+      "course": "MAC 1140 | Precalculus Algebra",
+      "createdAt": "2021-11-16T16:29:26.563Z"
+    },
+    {
+      "id": "9rgBUin",
+      "studentId": "V222222222",
+      "course": "HUM 1020 | Introduction to Humanities",
+      "createdAt": "2021-11-16T16:33:00.223Z"
+    },
+    {
+      "studentId": "V222222222",
+      "course": "HUM 1020 | Introduction to Humanities",
+      "createdAt": "2021-11-16T23:16:30.146Z",
+      "id": "YSnO4m6"
+    },
+    {
+      "studentId": "V222222222",
+      "course": "HUM 1020 | Introduction to Humanities",
+      "createdAt": "2021-11-16T23:21:12.568Z",
+      "id": "mP3Nye5"
+    },
+    {
+      "studentId": "V222222222",
+      "course": "HUM 1020 | Introduction to Humanities",
+      "createdAt": "2021-11-16T23:22:04.713Z",
+      "id": "3Dqc71M"
+    },
+    {
+      "studentId": "V222222222",
+      "course": "HUM 1020 | Introduction to Humanities",
+      "createdAt": "2021-11-16T23:22:15.716Z",
+      "id": "5yiu_oY"
+    },
+    {
+      "studentId": "V000000000",
+      "course": "MAC 1105 | College Algebra",
+      "createdAt": "2021-11-16T23:27:09.971Z",
+      "id": "1iX8PyD"
+    },
+    {
+      "studentId": "V000000000",
+      "course": "MAC 1105 | College Algebra",
+      "createdAt": "2021-11-16T23:27:15.768Z",
+      "id": "dhiMoQ_"
+    },
+    {
+      "studentId": "V000000000",
+      "course": "MAC 1105 | College Algebra",
+      "createdAt": "2021-11-16T23:27:19.369Z",
+      "id": "EBO86-L"
+    },
+    {
+      "studentId": "V000000000",
+      "course": "MAC 1105 | College Algebra",
+      "createdAt": "2021-11-16T23:27:24.239Z",
+      "id": "rWOHz0b"
+    },
+    {
+      "studentId": "V000000000",
+      "course": "MAC 1105 | College Algebra",
+      "createdAt": "2021-11-16T23:27:25.182Z",
+      "id": "mowDUKk"
+    },
+    {
+      "studentId": "V000000000",
+      "course": "MAC 1105 | College Algebra",
+      "createdAt": "2021-11-16T23:27:26.828Z",
+      "id": "sdRIw5n"
+    },
+    {
+      "studentId": "V000000000",
+      "course": "MAC 1105 | College Algebra",
+      "createdAt": "2021-11-16T23:27:30.889Z",
+      "id": "pXxfNl3"
+    }
+  ]
+}
