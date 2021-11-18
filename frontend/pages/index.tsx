@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import useSWR, { useSWRConfig } from "swr";
 import axios, { Method } from "axios";
-import { CreateTicket, Ticket } from "../types/Ticket";
+import { CreateTicket, Ticket } from "../types/ticket";
 import { Button, Heading } from "@chakra-ui/react";
 
 const fetcher = (url: string) => axios.get(url).then((res) => res.data);
@@ -63,7 +63,7 @@ const IndexPage: NextPage = () => {
         {data?.map((ticket) => {
           return (
             <div key={ticket.id}>
-              {ticket.studentId}, {ticket.course},{ticket.createdAt}
+              {ticket.studentId}, {ticket.course},{ticket.createAt}
             </div>
           );
         })}
