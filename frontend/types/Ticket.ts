@@ -2,7 +2,7 @@ export interface Ticket {
   id: string;
   studentId: string;
   course: string;
-  createAt: string;
+  createDate: string;
 }
 
 export interface CreateTicket {
