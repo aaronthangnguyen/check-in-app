@@ -4,12 +4,14 @@ import useSWR, { useSWRConfig } from "swr";
 import axios, { Method } from "axios";
 import { CreateTicket, Ticket } from "../types/ticket";
 import { Button, Heading } from "@chakra-ui/react";
+import { createTicket } from "../apis/tickets.api";
 
 const fetcher = (url: string) => axios.get(url).then((res) => res.data);
-const URL = "http://localhost:3001";
+const TICKETS_URL = "http://localhost:3000/tickets";
 
 const IndexPage: NextPage = () => {
-  const { data } = useSWR<Ticket[]>(`${URL}/tickets`, fetcher);
+  const { data } = useSWR<Ticket[]>(TICKETS_URL, fetcher);
+
   const { mutate } = useSWRConfig();
 
   const handleCreateTicket = async () => {
@@ -19,32 +21,14 @@ const IndexPage: NextPage = () => {
     };
 
     mutate(
-      `${URL}/tickets`,
+      TICKETS_URL,
       [...(data || []), { id: "key", ...newTicket }], // Let key be id placeholder until revalidation
       false
     );
 
-    await createTicket(newTicket);
+    await createTicket(TICKETS_URL, newTicket);
 
-    mutate(`${URL}/tickets`);
-  };
-
-  const createTicket = async (newTicket: CreateTicket) => {
-    const options = {
-      method: "POST" as Method,
-      url: `${URL}/tickets`,
-      headers: { "Content-Type": "application/json" },
-      data: newTicket,
-    };
-
-    axios
-      .request(options)
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    mutate(TICKETS_URL);
   };
 
   return (
@@ -63,7 +47,7 @@ const IndexPage: NextPage = () => {
         {data?.map((ticket) => {
           return (
             <div key={ticket.id}>
-              {ticket.studentId}, {ticket.course},{ticket.createAt}
+              {ticket.studentId}, {ticket.course},{ticket.createDate}
             </div>
           );
         })}
