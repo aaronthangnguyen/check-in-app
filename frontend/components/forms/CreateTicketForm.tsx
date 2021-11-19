@@ -36,9 +36,11 @@ export const CreateTicketForm = ({ onMutate }: CreateTicketFormProps) => {
         headers: { "Content-Type": "application/json" },
         data: ticket,
       })
-      .then((res) => {})
+      .then((res) => {
+        console.info(`Status: ${res.status}`);
+      })
       .catch((err) => {
-        console.error(err);
+        console.error(`Error: ${err}`);
       });
     onMutate();
   };
@@ -79,10 +81,10 @@ export const CreateTicketForm = ({ onMutate }: CreateTicketFormProps) => {
             required: "Course is required",
           })}
         >
-          {options?.map((data) => {
+          {options?.map((option) => {
             return (
-              <option key={data} value={data}>
-                {data}
+              <option key={option} value={option}>
+                {option}
               </option>
             );
           })}
