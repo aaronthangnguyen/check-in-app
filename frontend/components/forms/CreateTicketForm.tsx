@@ -1,11 +1,15 @@
 import { CheckIcon } from "@chakra-ui/icons";
 import {
+  Box,
   Button,
+  Center,
   FormControl,
   FormErrorMessage,
   FormLabel,
+  Heading,
   Input,
   Select,
+  useToast,
 } from "@chakra-ui/react";
 import axios, { Method } from "axios";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -25,6 +29,7 @@ export const CreateTicketForm = ({ onMutate }: CreateTicketFormProps) => {
     formState: { errors, isSubmitting },
   } = useForm();
   const options = getOptions();
+  const toast = useToast();
 
   const onSubmit: SubmitHandler<CreateTicket> = async (ticket) => {
     reset();
@@ -37,7 +42,15 @@ export const CreateTicketForm = ({ onMutate }: CreateTicketFormProps) => {
         data: ticket,
       })
       .then((res) => {
-        console.info(`Status: ${res.status}`);
+        res.status === 201
+          ? toast({
+              title: "Ticket created.",
+              description: "Thank you for checking in with us!",
+              status: "success",
+              duration: 5000,
+              isClosable: true,
+            })
+          : console.info(`Status: ${res.status}`);
       })
       .catch((err) => {
         console.error(`Error: ${err}`);
@@ -46,64 +59,71 @@ export const CreateTicketForm = ({ onMutate }: CreateTicketFormProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      {/* Student ID */}
-      <FormControl isInvalid={errors.studentId}>
-        <FormLabel id="student-id-label" htmlFor="student-id" fontSize="lg">
-          Student ID
-        </FormLabel>
-        <Input
-          id="student-id"
-          placeholder="Student ID"
-          size="lg"
-          {...register("studentId", {
-            required: "Student ID is required",
-            minLength: { value: 9, message: "Minimum length is 9" },
-            maxLength: { value: 14, message: "Maximum length is 14" },
-          })}
-        />
-        <FormErrorMessage>
-          {errors.studentId && errors.studentId.message}
-        </FormErrorMessage>
-      </FormControl>
+    <Box display="flex" flexDirection="column" alignItems="center">
+      <Heading size="2xl" fontWeight="black" mb={6} as="h1">
+        Check-in.App
+      </Heading>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        {/* Student ID */}
+        <FormControl isInvalid={errors.studentId}>
+          <FormLabel id="student-id-label" htmlFor="student-id" fontSize="lg">
+            Student ID
+          </FormLabel>
+          <Input
+            id="student-id"
+            placeholder="Student ID"
+            size="lg"
+            {...register("studentId", {
+              required: "Student ID is required",
+              minLength: { value: 9, message: "Minimum length is 9" },
+              maxLength: { value: 14, message: "Maximum length is 14" },
+            })}
+          />
+          <FormErrorMessage>
+            {errors.studentId && errors.studentId.message}
+          </FormErrorMessage>
+        </FormControl>
 
-      {/* Course */}
-      <FormControl isInvalid={errors.course}>
-        <FormLabel id="course-label" htmlFor="course" fontSize="lg">
-          Course
-        </FormLabel>
-        <Select
-          id="course"
-          placeholder="Select course"
-          size="lg"
-          isRequired
-          {...register("course", {
-            required: "Course is required",
-          })}
-        >
-          {options?.map((option) => {
-            return (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            );
-          })}
-        </Select>
-        <FormErrorMessage>
-          {errors.course && errors.course.message}
-        </FormErrorMessage>
-      </FormControl>
-
-      <Button
-        leftIcon={<CheckIcon />}
-        colorScheme="teal"
-        isLoading={isSubmitting}
-        type="submit"
-        mt={4}
-      >
-        Submit
-      </Button>
-    </form>
+        {/* Course */}
+        <FormControl isInvalid={errors.course} mt={2}>
+          <FormLabel id="course-label" htmlFor="course" fontSize="lg">
+            Course
+          </FormLabel>
+          <Select
+            id="course"
+            placeholder="Select course"
+            size="lg"
+            isRequired
+            {...register("course", {
+              required: "Course is required",
+            })}
+          >
+            {options?.map((option) => {
+              return (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              );
+            })}
+          </Select>
+          <FormErrorMessage>
+            {errors.course && errors.course.message}
+          </FormErrorMessage>
+        </FormControl>
+        <Center>
+          <Button
+            leftIcon={<CheckIcon />}
+            colorScheme="teal"
+            isLoading={isSubmitting}
+            size="lg"
+            mt={6}
+            type="submit"
+          >
+            Submit
+          </Button>
+        </Center>
+      </form>
+    </Box>
   );
 };
 
