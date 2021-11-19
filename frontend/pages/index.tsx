@@ -23,7 +23,9 @@ const IndexPage: NextPage = () => {
       </Head>
 
       <main>
-        <Heading>Check-in.App</Heading>
+        <Heading size="2xl" fontWeight="black" as="h1">
+          Check-in.App
+        </Heading>
         {data
           ?.slice(0)
           .reverse()
