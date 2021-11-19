@@ -10,7 +10,7 @@ const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
 const IndexPage: NextPage = () => {
   const { data, mutate } = useSWR<Ticket[]>(
-    "http://localhost:3000/tickets",
+    `${process.env.NEXT_PUBLIC_BASE_URL}/tickets`,
     fetcher
   );
 

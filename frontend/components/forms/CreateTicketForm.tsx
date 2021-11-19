@@ -32,7 +32,7 @@ export const CreateTicketForm = ({ onMutate }: CreateTicketFormProps) => {
     await axios
       .request({
         method: "POST" as Method,
-        url: `http://localhost:3000/tickets`,
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/tickets`,
         headers: { "Content-Type": "application/json" },
         data: ticket,
       })
