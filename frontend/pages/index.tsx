@@ -1,9 +1,10 @@
-import { Heading } from "@chakra-ui/react";
+import { Box, Container } from "@chakra-ui/react";
 import axios from "axios";
 import type { NextPage } from "next";
 import Head from "next/head";
 import useSWR from "swr";
 import { CreateTicketForm } from "../components/forms/CreateTicketForm";
+import { Footer } from "../components/shared/Footer";
 import { Ticket } from "../types/ticket";
 
 const fetcher = (url: string) => axios.get(url).then((res) => res.data);
@@ -23,24 +24,19 @@ const IndexPage: NextPage = () => {
       </Head>
 
       <main>
-        <Heading size="2xl" fontWeight="black" as="h1">
-          Check-in.App
-        </Heading>
-        {data
-          ?.slice(0)
-          .reverse()
-          .map((ticket) => {
-            return (
-              <div key={Math.random() * 1000}>
-                {ticket.studentId}, {ticket.course}
-              </div>
-            );
-          })}
-
-        <CreateTicketForm onMutate={mutate} />
+        <Container
+          height="95vh"
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+        >
+          <Box bg="white" p={12} rounded="xl" boxShadow="dark-lg">
+            <CreateTicketForm onMutate={mutate} />
+          </Box>
+        </Container>
       </main>
 
-      <footer></footer>
+      <Footer />
     </div>
   );
 };
