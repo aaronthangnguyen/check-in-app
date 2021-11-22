@@ -1,51 +1,19 @@
+import { Box, Container } from "@chakra-ui/react";
+import axios from "axios";
 import type { NextPage } from "next";
 import Head from "next/head";
-import useSWR, { useSWRConfig } from "swr";
-import axios, { Method } from "axios";
-import { CreateTicket, Ticket } from "../types/Ticket";
-import { Button, Heading } from "@chakra-ui/react";
+import useSWR from "swr";
+import { CreateTicketForm } from "../components/forms/CreateTicketForm";
+import { Footer } from "../components/shared/Footer";
+import { Ticket } from "../types/ticket";
 
 const fetcher = (url: string) => axios.get(url).then((res) => res.data);
-const URL = "http://localhost:3001";
 
 const IndexPage: NextPage = () => {
-  const { data } = useSWR<Ticket[]>(`${URL}/tickets`, fetcher);
-  const { mutate } = useSWRConfig();
-
-  const handleCreateTicket = async () => {
-    const newTicket: CreateTicket = {
-      studentId: "V000000000",
-      course: "MAC 1105 | College Algebra",
-    };
-
-    mutate(
-      `${URL}/tickets`,
-      [...(data || []), { id: "key", ...newTicket }], // Let key be id placeholder until revalidation
-      false
-    );
-
-    await createTicket(newTicket);
-
-    mutate(`${URL}/tickets`);
-  };
-
-  const createTicket = async (newTicket: CreateTicket) => {
-    const options = {
-      method: "POST" as Method,
-      url: `${URL}/tickets`,
-      headers: { "Content-Type": "application/json" },
-      data: newTicket,
-    };
-
-    axios
-      .request(options)
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  };
+  const { data, mutate } = useSWR<Ticket[]>(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/tickets`,
+    fetcher
+  );
 
   return (
     <div>
@@ -56,20 +24,19 @@ const IndexPage: NextPage = () => {
       </Head>
 
       <main>
-        <Heading>Tickets</Heading>
-        <Button isDisabled={!data} onClick={handleCreateTicket}>
-          Create
-        </Button>
-        {data?.map((ticket) => {
-          return (
-            <div key={ticket.id}>
-              {ticket.studentId}, {ticket.course},{ticket.createdAt}
-            </div>
-          );
-        })}
+        <Container
+          height="95vh"
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+        >
+          <Box bg="white" p={12} rounded="xl" boxShadow="dark-lg">
+            <CreateTicketForm onMutate={mutate} />
+          </Box>
+        </Container>
       </main>
 
-      <footer></footer>
+      <Footer />
     </div>
   );
 };

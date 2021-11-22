@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  db:
+    container_name: database
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: check-in-app
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+  backend:
+    container_name: backend
+    image: check-in-app/backend:latest
+    build: ./backend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    links:
+      - db
+  frontend:
+    container_name: frontend
+    image: check-in-app/frontend:latest
+    build: ./frontend
+    ports:
+      - "3001:3001"
