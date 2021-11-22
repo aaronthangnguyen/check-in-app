@@ -1,4 +1,4 @@
-FROM node:lts-alpine3.14
+FROM node:lts-gallium
 
 WORKDIR /usr/src/app
 
@@ -8,8 +8,6 @@ RUN npm install
 
 COPY . .
 
-RUN npm run build
-
-EXPOSE 3001
+EXPOSE 3000
 
 CMD ["npm", "run", "start"]
